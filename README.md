@@ -30,5 +30,3 @@ Double-click `index.html`. No server or install is needed.
 - Run the AJAX program (Unit 5) through a web server such as XAMPP or `python -m http.server`.
 - PHP and Servlet programs need XAMPP / Tomcat + MySQL; steps are written in each answer.
 
-## Deploy free
-Upload the folder to Vercel, Netlify or GitHub Pages as a static site (no build step).
