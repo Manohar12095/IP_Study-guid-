@@ -269,6 +269,7 @@ btn.removeEventListener("click", showMsg);
 /* ---------- 3. DHTML application ---------- */
 {
   id: 'u2q3',
+  kind: 'Program',
   title: 'DHTML Application that Dynamically Modifies Size and Colour of a Web Page',
   tags: ['dhtml','dynamic html','style','font size','color','background','program'],
   intro:
@@ -416,6 +417,7 @@ btn.removeEventListener("click", showMsg);
 /* ---------- 4. JS Regular Expression ---------- */
 {
   id: 'u2q4',
+  kind: 'Program',
   title: 'JavaScript Regular Expressions',
   tags: ['regex','regexp','test','match','replace','pattern','validation'],
   intro:
