@@ -326,6 +326,7 @@ public class HelloServlet extends HttpServlet {
 /* ---------- 4. Servlet program to get details from HTML forms ---------- */
 {
   id: 'u3q4',
+  kind: 'Program',
   title: 'Servlet Program to Get Details from HTML Forms and Display in a Web Page',
   tags: ['servlet program','html form','getParameter','doPost','student details','web.xml'],
   intro:
@@ -492,6 +493,41 @@ public class StudentServlet extends HttpServlet {
         'Open <code class="inline">http://localhost:8080/StudentApp/form.html</code>, fill the form and submit.'
       ]) +
       note('With Tomcat 10 and above, packages are renamed from <code class="inline">javax.servlet</code> to <code class="inline">jakarta.servlet</code>. Use the matching imports for your Tomcat version.')
+    ),
+    section('5A. JSP Version of the Same Program',
+      p('The question also allows a <b>JSP</b> program. A JSP can read the form directly using the implicit <code class="inline">request</code> object, so no servlet class or mapping is needed.') +
+      code('result.jsp (form action="result.jsp")', `
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%
+    request.setCharacterEncoding("UTF-8");
+    String name   = request.getParameter("name");
+    String regno  = request.getParameter("regno");
+    String email  = request.getParameter("email");
+    String age    = request.getParameter("age");
+    String gender = request.getParameter("gender");
+    String dept   = request.getParameter("dept");
+    String[] skills = request.getParameterValues("skills");
+%>
+<html>
+<head><title>Student Details</title></head>
+<body style="font-family:Arial;padding:30px">
+  <h2>Submitted Student Details</h2>
+  <table border="1" cellpadding="8" style="border-collapse:collapse">
+    <tr><th>Field</th><th>Value</th></tr>
+    <tr><td>Name</td><td><%= name %></td></tr>
+    <tr><td>Register No</td><td><%= regno %></td></tr>
+    <tr><td>Email</td><td><%= email %></td></tr>
+    <tr><td>Age</td><td><%= age %></td></tr>
+    <tr><td>Gender</td><td><%= gender %></td></tr>
+    <tr><td>Department</td><td><%= dept %></td></tr>
+    <tr><td>Skills</td>
+        <td><% if (skills != null) { for (String s : skills) { out.print(s + " "); } } else { out.print("None"); } %></td></tr>
+  </table>
+  <a href="form.html">Back to form</a>
+</body>
+</html>
+`) +
+      note('Change <code class="inline">action="student"</code> to <code class="inline">action="result.jsp"</code> in <code class="inline">form.html</code> to use the JSP version. For output from real users, escape the values (for example with <code class="inline">&lt;c:out&gt;</code> from JSTL) to prevent XSS.')
     ),
     section('6. Key Methods Used',
       table(['Method','Purpose'],[

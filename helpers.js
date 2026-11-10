@@ -46,5 +46,12 @@ function svg(w,h,inner){
 
 /* Register a unit. Each question: {id,title,marks,tags,intro,sections:[html],rapid:[...]} */
 function addUnit(num, title, questions){
-  window.UNITS.push({num:num,title:title,questions:questions});
+  var existing = window.UNITS.filter(function(u){ return u.num === num; })[0];
+  if(existing){
+    questions.forEach(function(q){ existing.questions.push(q); });
+  } else {
+    window.UNITS.push({num:num,title:title,questions:questions.slice()});
+  }
 }
+/* Part A (2 mark) page: list of {q, a} */
+window.ALSO = window.ALSO || {};
